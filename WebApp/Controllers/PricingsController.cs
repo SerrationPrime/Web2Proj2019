@@ -1,0 +1,134 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+using System.Web.Http.Description;
+using WebApp.Models;
+using WebApp.Persistence;
+
+namespace WebApp.Controllers
+{
+    public class PricingsController : ApiController
+    {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
+        // GET: api/Pricings
+        public IQueryable<Pricing> GetPriceList()
+        {
+            return db.PriceList;
+        }
+
+        // GET: api/Pricings/5
+        [ResponseType(typeof(Pricing))]
+        public IHttpActionResult GetPricing(int id)
+        {
+            Pricing pricing = db.PriceList.Find(id);
+            if (pricing == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(pricing);
+        }
+
+        // PUT: api/Pricings/5
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PutPricing(int id, Pricing pricing)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (id != pricing.TicketTypeId)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(pricing).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!PricingExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        // POST: api/Pricings
+        [ResponseType(typeof(Pricing))]
+        public IHttpActionResult PostPricing(Pricing pricing)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            db.PriceList.Add(pricing);
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateException)
+            {
+                if (PricingExists(pricing.TicketTypeId))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return CreatedAtRoute("DefaultApi", new { id = pricing.TicketTypeId }, pricing);
+        }
+
+        // DELETE: api/Pricings/5
+        [ResponseType(typeof(Pricing))]
+        public IHttpActionResult DeletePricing(int id)
+        {
+            Pricing pricing = db.PriceList.Find(id);
+            if (pricing == null)
+            {
+                return NotFound();
+            }
+
+            db.PriceList.Remove(pricing);
+            db.SaveChanges();
+
+            return Ok(pricing);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        private bool PricingExists(int id)
+        {
+            return db.PriceList.Count(e => e.TicketTypeId == id) > 0;
+        }
+    }
+}

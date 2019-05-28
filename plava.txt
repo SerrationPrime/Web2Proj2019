@@ -1,0 +1,2 @@
+Background Blue: #99D9EA
+Other Blue: #7ED0E4
