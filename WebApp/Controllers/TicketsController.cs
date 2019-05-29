@@ -10,24 +10,30 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using WebApp.Models;
 using WebApp.Persistence;
+using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
     public class TicketsController : ApiController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private IUnitOfWork db;
+
+        public TicketsController(IUnitOfWork db)
+        {
+            this.db = db;
+        }
 
         // GET: api/Tickets
         public IQueryable<Ticket> GetTickets()
         {
-            return db.Tickets;
+            return (IQueryable<Ticket>)db.Tickets;
         }
 
         // GET: api/Tickets/5
         [ResponseType(typeof(Ticket))]
         public IHttpActionResult GetTicket(string id)
         {
-            Ticket ticket = db.Tickets.Find(id);
+            Ticket ticket = db.Tickets.Get(id);
             if (ticket == null)
             {
                 return NotFound();
@@ -50,11 +56,11 @@ namespace WebApp.Controllers
                 return BadRequest();
             }
 
-            db.Entry(ticket).State = EntityState.Modified;
+            db.Tickets.Update(ticket);
 
             try
             {
-                db.SaveChanges();
+                db.Complete();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -84,7 +90,7 @@ namespace WebApp.Controllers
 
             try
             {
-                db.SaveChanges();
+                db.Complete();
             }
             catch (DbUpdateException)
             {
@@ -105,14 +111,14 @@ namespace WebApp.Controllers
         [ResponseType(typeof(Ticket))]
         public IHttpActionResult DeleteTicket(string id)
         {
-            Ticket ticket = db.Tickets.Find(id);
+            Ticket ticket = db.Tickets.Get(id);
             if (ticket == null)
             {
                 return NotFound();
             }
 
             db.Tickets.Remove(ticket);
-            db.SaveChanges();
+            db.Complete();
 
             return Ok(ticket);
         }
@@ -128,7 +134,7 @@ namespace WebApp.Controllers
 
         private bool TicketExists(string id)
         {
-            return db.Tickets.Count(e => e.Id == id) > 0;
+            return db.Tickets.Find(e => e.Id == id).ToList().Count > 0;
         }
     }
 }

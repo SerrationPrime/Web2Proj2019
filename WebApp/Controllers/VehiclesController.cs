@@ -10,24 +10,30 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using WebApp.Models;
 using WebApp.Persistence;
+using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
     public class VehiclesController : ApiController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private IUnitOfWork db;
+
+        public VehiclesController(IUnitOfWork db)
+        {
+            this.db = db;
+        }
 
         // GET: api/Vehicles
         public IQueryable<Vehicle> GetVehicles()
         {
-            return db.Vehicles;
+            return (IQueryable<Vehicle>)db.Vehicles;
         }
 
         // GET: api/Vehicles/5
         [ResponseType(typeof(Vehicle))]
         public IHttpActionResult GetVehicle(string id)
         {
-            Vehicle vehicle = db.Vehicles.Find(id);
+            Vehicle vehicle = db.Vehicles.Get(id);
             if (vehicle == null)
             {
                 return NotFound();
@@ -50,11 +56,11 @@ namespace WebApp.Controllers
                 return BadRequest();
             }
 
-            db.Entry(vehicle).State = EntityState.Modified;
+            db.Vehicles.Update(vehicle);
 
             try
             {
-                db.SaveChanges();
+                db.Complete();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -84,7 +90,7 @@ namespace WebApp.Controllers
 
             try
             {
-                db.SaveChanges();
+                db.Complete();
             }
             catch (DbUpdateException)
             {
@@ -105,14 +111,14 @@ namespace WebApp.Controllers
         [ResponseType(typeof(Vehicle))]
         public IHttpActionResult DeleteVehicle(string id)
         {
-            Vehicle vehicle = db.Vehicles.Find(id);
+            Vehicle vehicle = db.Vehicles.Get(id);
             if (vehicle == null)
             {
                 return NotFound();
             }
 
             db.Vehicles.Remove(vehicle);
-            db.SaveChanges();
+            db.Complete();
 
             return Ok(vehicle);
         }
@@ -128,7 +134,7 @@ namespace WebApp.Controllers
 
         private bool VehicleExists(string id)
         {
-            return db.Vehicles.Count(e => e.Id == id) > 0;
+            return db.Vehicles.Find(e => e.Id == id).ToList().Count > 0;
         }
     }
 }
