@@ -10,24 +10,29 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using WebApp.Models;
 using WebApp.Persistence;
+using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
     public class PricingsController : ApiController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        IUnitOfWork db;
+        public PricingsController(IUnitOfWork db)
+        {
+            this.db = db;
+        }
 
         // GET: api/Pricings
         public IQueryable<Pricing> GetPriceList()
         {
-            return db.PriceList;
+            return (IQueryable<Pricing>)db.PriceList;
         }
 
         // GET: api/Pricings/5
         [ResponseType(typeof(Pricing))]
-        public IHttpActionResult GetPricing(int id)
+        public IHttpActionResult GetPricing(string id)
         {
-            Pricing pricing = db.PriceList.Find(id);
+            Pricing pricing = db.PriceList.Get(id);
             if (pricing == null)
             {
                 return NotFound();
@@ -38,23 +43,23 @@ namespace WebApp.Controllers
 
         // PUT: api/Pricings/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutPricing(int id, Pricing pricing)
+        public IHttpActionResult PutPricing(string id, Pricing pricing)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != pricing.TicketTypeId)
+            if (id != pricing.Id)
             {
                 return BadRequest();
             }
 
-            db.Entry(pricing).State = EntityState.Modified;
+            db.PriceList.Update(pricing);
 
             try
             {
-                db.SaveChanges();
+                db.Complete();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -84,11 +89,11 @@ namespace WebApp.Controllers
 
             try
             {
-                db.SaveChanges();
+                db.Complete();
             }
             catch (DbUpdateException)
             {
-                if (PricingExists(pricing.TicketTypeId))
+                if (PricingExists(pricing.Id))
                 {
                     return Conflict();
                 }
@@ -103,16 +108,16 @@ namespace WebApp.Controllers
 
         // DELETE: api/Pricings/5
         [ResponseType(typeof(Pricing))]
-        public IHttpActionResult DeletePricing(int id)
+        public IHttpActionResult DeletePricing(string id)
         {
-            Pricing pricing = db.PriceList.Find(id);
+            Pricing pricing = db.PriceList.Get(id);
             if (pricing == null)
             {
                 return NotFound();
             }
 
             db.PriceList.Remove(pricing);
-            db.SaveChanges();
+            db.Complete();
 
             return Ok(pricing);
         }
@@ -126,9 +131,9 @@ namespace WebApp.Controllers
             base.Dispose(disposing);
         }
 
-        private bool PricingExists(int id)
+        private bool PricingExists(string id)
         {
-            return db.PriceList.Count(e => e.TicketTypeId == id) > 0;
+            return db.PriceList.Find(e => e.Id == id).ToList().Count > 0;
         }
     }
 }

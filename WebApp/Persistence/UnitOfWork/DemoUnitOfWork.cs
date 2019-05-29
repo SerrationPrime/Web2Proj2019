@@ -22,6 +22,7 @@ namespace WebApp.Persistence.UnitOfWork
         public ILineRepository Lines { get; set; }
         public IStationRepository Stations { get; set; }
         public ITicketRepository Tickets { get; set; }
+        public IScheduleRepository Schedules { get; set; }
         public IVehicleRepository Vehicles { get; set; }
         public ITicketTypeRepository TicketTypes { get; set; }
         public IUserTypeRepository UserTypes { get; set; }

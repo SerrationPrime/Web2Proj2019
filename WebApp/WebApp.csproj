@@ -256,7 +256,6 @@
     <Compile Include="Controllers\SchedulesController.cs" />
     <Compile Include="Controllers\StationsController.cs" />
     <Compile Include="Controllers\TicketsController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Controllers\VehiclesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -289,6 +288,7 @@
     <Compile Include="Persistence\Repository\IRepository.cs" />
     <Compile Include="Persistence\Repository\ModelRepository\ILineRepository.cs" />
     <Compile Include="Persistence\Repository\ModelRepository\IPricingRepository.cs" />
+    <Compile Include="Persistence\Repository\ModelRepository\IScheduleRepository.cs" />
     <Compile Include="Persistence\Repository\ModelRepository\IStationRepository.cs" />
     <Compile Include="Persistence\Repository\ModelRepository\ITicketRepository.cs" />
     <Compile Include="Persistence\Repository\ModelRepository\ITicketTypeRepository.cs" />
@@ -296,6 +296,7 @@
     <Compile Include="Persistence\Repository\ModelRepository\IVehicleRepository.cs" />
     <Compile Include="Persistence\Repository\ModelRepository\LineRepository.cs" />
     <Compile Include="Persistence\Repository\ModelRepository\PricingRepository.cs" />
+    <Compile Include="Persistence\Repository\ModelRepository\ScheduleRepository.cs" />
     <Compile Include="Persistence\Repository\ModelRepository\StationRepository.cs" />
     <Compile Include="Persistence\Repository\ModelRepository\TicketRepository.cs" />
     <Compile Include="Persistence\Repository\ModelRepository\TicketTypeRepository.cs" />

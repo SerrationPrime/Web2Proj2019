@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,11 +11,11 @@ namespace WebApp.Models
     [Table("PriceList")]
     public class Pricing
     {
-        [Key, Column(Order = 0)]
+        [Key]
+        public string Id { get; set; }
         [Required]
         public int TicketTypeId { get; set; }
         public TicketType TicketType { get; set; }
-        [Key, Column(Order = 1)]
         [Required]
         public int UserTypeId { get; set; }
         public UserType UserType { get; set; }

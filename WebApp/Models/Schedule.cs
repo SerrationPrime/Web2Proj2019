@@ -10,10 +10,10 @@ namespace WebApp.Models
     [Table("Schedules")]
     public class Schedule
     {
-        [Key, Column(Order = 0)]
+        [Key]
+        public string Id;
         [Required]
         public DayOfWeek Weekday { get; set; }
-        [Key, Column(Order = 1)]
         [Required]
         public Line Line { get; set; }
 

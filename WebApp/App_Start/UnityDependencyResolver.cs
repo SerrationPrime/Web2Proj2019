@@ -73,6 +73,7 @@ namespace WebApp.App_Start
             container.RegisterType<IPricingRepository, PricingRepository>();
             container.RegisterType<ILineRepository, LineRepository>();
             container.RegisterType<IStationRepository, StationRepository>();
+            container.RegisterType<IScheduleRepository, ScheduleRepository>();
             container.RegisterType<ITicketRepository, TicketRepository>();
             container.RegisterType<IVehicleRepository, VehicleRepository>();
             container.RegisterType<ITicketTypeRepository, TicketTypeRepository>();
