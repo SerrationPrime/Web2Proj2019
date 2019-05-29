@@ -10,24 +10,30 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using WebApp.Models;
 using WebApp.Persistence;
+using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
     public class PricingsController : ApiController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private IUnitOfWork db;
+
+        public PricingsController(IUnitOfWork db)
+        {
+            this.db = db;
+        }
 
         // GET: api/Pricings
         public IQueryable<Pricing> GetPriceList()
         {
-            return db.PriceList;
+            return (IQueryable<Pricing>)db.PriceList;
         }
 
         // GET: api/Pricings/5
         [ResponseType(typeof(Pricing))]
         public IHttpActionResult GetPricing(int id)
         {
-            Pricing pricing = db.PriceList.Find(id);
+            Pricing pricing = db.PriceList.Get(id);
             if (pricing == null)
             {
                 return NotFound();
@@ -50,11 +56,11 @@ namespace WebApp.Controllers
                 return BadRequest();
             }
 
-            db.Entry(pricing).State = EntityState.Modified;
+            db.PriceList.Update(pricing);
 
             try
             {
-                db.SaveChanges();
+                db.Complete();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -84,7 +90,7 @@ namespace WebApp.Controllers
 
             try
             {
-                db.SaveChanges();
+                db.Complete();
             }
             catch (DbUpdateException)
             {
@@ -105,14 +111,14 @@ namespace WebApp.Controllers
         [ResponseType(typeof(Pricing))]
         public IHttpActionResult DeletePricing(int id)
         {
-            Pricing pricing = db.PriceList.Find(id);
+            Pricing pricing = db.PriceList.Get(id);
             if (pricing == null)
             {
                 return NotFound();
             }
 
             db.PriceList.Remove(pricing);
-            db.SaveChanges();
+            db.Complete();
 
             return Ok(pricing);
         }

@@ -10,24 +10,30 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using WebApp.Models;
 using WebApp.Persistence;
+using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
     public class SchedulesController : ApiController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private IUnitOfWork db;
+
+        public SchedulesController(IUnitOfWork db)
+        {
+            this.db = db;
+        }
 
         // GET: api/Schedules
         public IQueryable<Schedule> GetSchedules()
         {
-            return db.Schedules;
+            return (IQueryable<Schedule>)db.Schedules;
         }
 
         // GET: api/Schedules/5
         [ResponseType(typeof(Schedule))]
         public IHttpActionResult GetSchedule(DayOfWeek id)
         {
-            Schedule schedule = db.Schedules.Find(id);
+            Schedule schedule = db.Schedules.Get(id);
             if (schedule == null)
             {
                 return NotFound();
