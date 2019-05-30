@@ -31,7 +31,7 @@ namespace WebApp.Controllers
 
         // GET: api/Schedules/5
         [ResponseType(typeof(Schedule))]
-        public IHttpActionResult GetSchedule(DayOfWeek id)
+        public IHttpActionResult GetSchedule(string id)
         {
             Schedule schedule = db.Schedules.Get(id);
             if (schedule == null)
@@ -44,23 +44,23 @@ namespace WebApp.Controllers
 
         // PUT: api/Schedules/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutSchedule(DayOfWeek id, Schedule schedule)
+        public IHttpActionResult PutSchedule(string id, Schedule schedule)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != schedule.Weekday)
+            if (id != schedule.Id)
             {
                 return BadRequest();
             }
 
-            db.Entry(schedule).State = EntityState.Modified;
+            db.Schedules.Update(schedule);
 
             try
             {
-                db.SaveChanges();
+                db.Complete();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -90,11 +90,11 @@ namespace WebApp.Controllers
 
             try
             {
-                db.SaveChanges();
+                db.Complete();
             }
             catch (DbUpdateException)
             {
-                if (ScheduleExists(schedule.Weekday))
+                if (ScheduleExists(schedule.Id))
                 {
                     return Conflict();
                 }
@@ -109,16 +109,16 @@ namespace WebApp.Controllers
 
         // DELETE: api/Schedules/5
         [ResponseType(typeof(Schedule))]
-        public IHttpActionResult DeleteSchedule(DayOfWeek id)
+        public IHttpActionResult DeleteSchedule(string id)
         {
-            Schedule schedule = db.Schedules.Find(id);
+            Schedule schedule = db.Schedules.Get(id);
             if (schedule == null)
             {
                 return NotFound();
             }
 
             db.Schedules.Remove(schedule);
-            db.SaveChanges();
+            db.Complete();
 
             return Ok(schedule);
         }
@@ -132,9 +132,9 @@ namespace WebApp.Controllers
             base.Dispose(disposing);
         }
 
-        private bool ScheduleExists(DayOfWeek id)
+        private bool ScheduleExists(string id)
         {
-            return db.Schedules.Count(e => e.Weekday == id) > 0;
+            return db.Schedules.Find(e => e.Id == id).ToList().Count > 0;
         }
     }
 }

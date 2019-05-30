@@ -16,6 +16,7 @@ namespace WebApp.Controllers
 {
     public class PricingsController : ApiController
     {
+
         private IUnitOfWork db;
 
         public PricingsController(IUnitOfWork db)
@@ -31,7 +32,7 @@ namespace WebApp.Controllers
 
         // GET: api/Pricings/5
         [ResponseType(typeof(Pricing))]
-        public IHttpActionResult GetPricing(int id)
+        public IHttpActionResult GetPricing(string id)
         {
             Pricing pricing = db.PriceList.Get(id);
             if (pricing == null)
@@ -44,14 +45,14 @@ namespace WebApp.Controllers
 
         // PUT: api/Pricings/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutPricing(int id, Pricing pricing)
+        public IHttpActionResult PutPricing(string id, Pricing pricing)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != pricing.TicketTypeId)
+            if (id != pricing.Id)
             {
                 return BadRequest();
             }
@@ -94,7 +95,7 @@ namespace WebApp.Controllers
             }
             catch (DbUpdateException)
             {
-                if (PricingExists(pricing.TicketTypeId))
+                if (PricingExists(pricing.Id))
                 {
                     return Conflict();
                 }
@@ -109,7 +110,7 @@ namespace WebApp.Controllers
 
         // DELETE: api/Pricings/5
         [ResponseType(typeof(Pricing))]
-        public IHttpActionResult DeletePricing(int id)
+        public IHttpActionResult DeletePricing(string id)
         {
             Pricing pricing = db.PriceList.Get(id);
             if (pricing == null)
@@ -132,9 +133,9 @@ namespace WebApp.Controllers
             base.Dispose(disposing);
         }
 
-        private bool PricingExists(int id)
+        private bool PricingExists(string id)
         {
-            return db.PriceList.Count(e => e.TicketTypeId == id) > 0;
+            return db.PriceList.Find(e => e.Id == id).ToList().Count > 0;
         }
     }
 }
