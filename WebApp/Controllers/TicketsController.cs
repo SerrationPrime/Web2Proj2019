@@ -14,6 +14,7 @@ using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
+    [Authorize(Roles = "AppUser")]
     public class TicketsController : ApiController
     {
         private IUnitOfWork db;
@@ -23,6 +24,7 @@ namespace WebApp.Controllers
             this.db = db;
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: api/Tickets
         public IQueryable<Ticket> GetTickets()
         {
@@ -30,6 +32,7 @@ namespace WebApp.Controllers
         }
 
         // GET: api/Tickets/5
+        // Note: Implement auth check on whether the authorized user owns the ticket
         [ResponseType(typeof(Ticket))]
         public IHttpActionResult GetTicket(string id)
         {
@@ -42,6 +45,7 @@ namespace WebApp.Controllers
             return Ok(ticket);
         }
 
+        [Authorize(Roles = "Admin")]
         // PUT: api/Tickets/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutTicket(string id, Ticket ticket)
@@ -107,6 +111,7 @@ namespace WebApp.Controllers
             return CreatedAtRoute("DefaultApi", new { id = ticket.Id }, ticket);
         }
 
+        [Authorize(Roles = "Administrator")]
         // DELETE: api/Tickets/5
         [ResponseType(typeof(Ticket))]
         public IHttpActionResult DeleteTicket(string id)

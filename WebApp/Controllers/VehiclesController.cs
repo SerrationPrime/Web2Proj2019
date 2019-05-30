@@ -13,16 +13,19 @@ using WebApp.Persistence;
 
 namespace WebApp.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class VehiclesController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        [AllowAnonymous]
         // GET: api/Vehicles
         public IQueryable<Vehicle> GetVehicles()
         {
             return db.Vehicles;
         }
 
+        [AllowAnonymous]
         // GET: api/Vehicles/5
         [ResponseType(typeof(Vehicle))]
         public IHttpActionResult GetVehicle(string id)

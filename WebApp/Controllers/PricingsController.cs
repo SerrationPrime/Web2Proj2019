@@ -14,6 +14,7 @@ using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class PricingsController : ApiController
     {
         IUnitOfWork db;
@@ -22,12 +23,14 @@ namespace WebApp.Controllers
             this.db = db;
         }
 
+        [AllowAnonymous]
         // GET: api/Pricings
         public IQueryable<Pricing> GetPriceList()
         {
             return (IQueryable<Pricing>)db.PriceList;
         }
 
+        [AllowAnonymous]
         // GET: api/Pricings/5
         [ResponseType(typeof(Pricing))]
         public IHttpActionResult GetPricing(string id)
