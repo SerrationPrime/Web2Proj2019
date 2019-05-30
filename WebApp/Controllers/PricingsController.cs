@@ -16,7 +16,9 @@ namespace WebApp.Controllers
 {
     public class PricingsController : ApiController
     {
-        IUnitOfWork db;
+
+        private IUnitOfWork db;
+
         public PricingsController(IUnitOfWork db)
         {
             this.db = db;
