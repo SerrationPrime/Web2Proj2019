@@ -90,6 +90,19 @@ namespace WebApp.Controllers
                 return BadRequest(ModelState);
             }
 
+            //Only registered users may buy non-hourly tickets
+            if (!System.Web.HttpContext.Current.User.Identity.IsAuthenticated) 
+            {
+                if (ticket.TicketType.Id != 0)
+                {
+                    return Unauthorized();
+                }
+                else
+                {
+                    ticket.User = null;
+                }
+            }
+
             db.Tickets.Add(ticket);
 
             try
