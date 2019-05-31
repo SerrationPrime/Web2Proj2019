@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "RegisterTab";
+}
+
+<form>
+    <h3>Register</h3>
+    <div class="form-group">
+        <input type="text" id="username" class="input-sm" placeholder="Username..." />
+    </div>
+    <div class="form-group">
+        <input type="password" id="password" class="input-sm" placeholder="Password..." />
+    </div>
+    <div class="form-group">
+        <input type="password" id="confirmPassword" class="input-sm" placeholder="Confirm Password..." />
+    </div>
+    <div class="form-group">
+        <input type="text" id="fName" class="input-sm" placeholder="First Name..." />
+    </div>
+    <div class="form-group">
+        <input type="text" id="lName" class="input-sm" placeholder="Last Name..." />
+    </div>
+    <div class="form-group">
+        <input type="date" id="dateBirth" class="input-sm" />
+    </div>
+    <div class="form-group">
+        <input type="text" id="adress" class="input-sm" placeholder="Your home adress..." />
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-3">
+            <p class="form-control">Whats your status</p>
+        </div>
+        <div class="form-group col-sm-3">
+            <select class="form-control">
+                <option value="Normal">Normal Customer</option>
+                <option value="Student">Student</option>
+                <option value="Senior">Senior</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="file" id="image" class="input-sm"/>
+    </div>
+    <div class="form-group">
+        <input type="submit" id="Register" class="input-sm" value="Register" />
+    </div>
+</form>
+
+
