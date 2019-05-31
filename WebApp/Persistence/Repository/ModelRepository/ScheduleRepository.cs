@@ -7,9 +7,9 @@ using WebApp.Models;
 
 namespace WebApp.Persistence.Repository.ModelRepository
 {
-    public class PricingRepository : Repository<Pricing, string>, IPricingRepository
+    public class ScheduleRepository : Repository<Schedule, string>, IScheduleRepository
     {
-        public PricingRepository(DbContext context) : base(context)
+        public ScheduleRepository(DbContext context) : base(context)
         {
         }
     }

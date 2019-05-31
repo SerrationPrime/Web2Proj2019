@@ -272,6 +272,10 @@
     <Compile Include="Migrations\201905280817309_ModeledEnums.Designer.cs">
       <DependentUpon>201905280817309_ModeledEnums.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905300731418_BaseModel.cs" />
+    <Compile Include="Migrations\201905300731418_BaseModel.Designer.cs">
+      <DependentUpon>201905300731418_BaseModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -288,6 +292,7 @@
     <Compile Include="Persistence\Repository\IRepository.cs" />
     <Compile Include="Persistence\Repository\ModelRepository\ILineRepository.cs" />
     <Compile Include="Persistence\Repository\ModelRepository\IPricingRepository.cs" />
+    <Compile Include="Persistence\Repository\ModelRepository\IScheduleRepository.cs" />
     <Compile Include="Persistence\Repository\ModelRepository\IStationRepository.cs" />
     <Compile Include="Persistence\Repository\ModelRepository\ITicketRepository.cs" />
     <Compile Include="Persistence\Repository\ModelRepository\ITicketTypeRepository.cs" />
@@ -295,6 +300,7 @@
     <Compile Include="Persistence\Repository\ModelRepository\IVehicleRepository.cs" />
     <Compile Include="Persistence\Repository\ModelRepository\LineRepository.cs" />
     <Compile Include="Persistence\Repository\ModelRepository\PricingRepository.cs" />
+    <Compile Include="Persistence\Repository\ModelRepository\ScheduleRepository.cs" />
     <Compile Include="Persistence\Repository\ModelRepository\StationRepository.cs" />
     <Compile Include="Persistence\Repository\ModelRepository\TicketRepository.cs" />
     <Compile Include="Persistence\Repository\ModelRepository\TicketTypeRepository.cs" />
@@ -409,6 +415,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905280817309_ModeledEnums.resx">
       <DependentUpon>201905280817309_ModeledEnums.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905300731418_BaseModel.resx">
+      <DependentUpon>201905300731418_BaseModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
