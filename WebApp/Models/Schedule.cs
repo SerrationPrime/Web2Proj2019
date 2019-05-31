@@ -11,7 +11,7 @@ namespace WebApp.Models
     public class Schedule
     {
         [Key]
-        public string Id;
+        public string Id { get; set; }
         [Required]
         public DayOfWeek Weekday { get; set; }
         [Required]
