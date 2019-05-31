@@ -14,6 +14,7 @@ using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class StationsController : ApiController
     {
         private IUnitOfWork db;
@@ -23,12 +24,14 @@ namespace WebApp.Controllers
             this.db = db;
         }
 
+        [AllowAnonymous]
         // GET: api/Stations
         public IQueryable<Station> GetStations()
         {
             return (IQueryable<Station>)db.Stations;
         }
 
+        [AllowAnonymous]
         // GET: api/Stations/5
         [ResponseType(typeof(Station))]
         public IHttpActionResult GetStation(string id)

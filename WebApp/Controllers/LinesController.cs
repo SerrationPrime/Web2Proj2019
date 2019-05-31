@@ -14,6 +14,7 @@ using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class LinesController : ApiController
     {
         private IUnitOfWork db;
@@ -23,12 +24,14 @@ namespace WebApp.Controllers
             this.db = db;
         }
 
+        [AllowAnonymous]
         // GET: api/Lines
         public IQueryable<Line> GetLines()
         {
             return (IQueryable<Line>)db.Lines;
         }
 
+        [AllowAnonymous]
         // GET: api/Lines/5
         [ResponseType(typeof(Line))]
         public IHttpActionResult GetLine(string id)

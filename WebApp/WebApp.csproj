@@ -272,6 +272,10 @@
     <Compile Include="Migrations\201905280817309_ModeledEnums.Designer.cs">
       <DependentUpon>201905280817309_ModeledEnums.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905300731418_BaseModel.cs" />
+    <Compile Include="Migrations\201905300731418_BaseModel.Designer.cs">
+      <DependentUpon>201905300731418_BaseModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -411,6 +415,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905280817309_ModeledEnums.resx">
       <DependentUpon>201905280817309_ModeledEnums.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905300731418_BaseModel.resx">
+      <DependentUpon>201905300731418_BaseModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
