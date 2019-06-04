@@ -14,5 +14,34 @@ namespace WebApp.Controllers
 
             return View();
         }
+
+        public ActionResult LoginTab()
+        {
+            ViewBag.Title = "LoginTab";
+
+            return View();
+        }
+
+        public ActionResult PriceTab()
+        {
+            ViewBag.Title = "PriceTab";
+
+            return View();
+        }
+
+        public ActionResult MapTab()
+        {
+            ViewBag.Title = "MapTab";
+
+            return View();
+        }
+
+        public ActionResult VLTab()
+        {
+            ViewBag.Title = "VLTab";
+
+            return View();
+        }
+
     }
 }
