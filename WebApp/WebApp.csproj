@@ -252,6 +252,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LinesController.cs" />
+    <Compile Include="Controllers\LoginTabController.cs" />
     <Compile Include="Controllers\PricingsController.cs" />
     <Compile Include="Controllers\SchedulesController.cs" />
     <Compile Include="Controllers\StationsController.cs" />
@@ -373,9 +374,15 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\RegisterTab.cshtml" />
+    <Content Include="Views\Home\LoginTab.cshtml" />
+    <Content Include="Views\Home\PriceTab.cshtml" />
+    <Content Include="Views\Home\MapTab.cshtml" />
+    <Content Include="Views\Home\VLTab.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
