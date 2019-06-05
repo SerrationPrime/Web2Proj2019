@@ -43,5 +43,12 @@ namespace WebApp.Controllers
             return View();
         }
 
+        public ActionResult RegisterTab()
+        {
+            ViewBag.Title = "RegisterTab";
+
+            return View();
+        }
+
     }
 }
