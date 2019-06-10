@@ -16,6 +16,7 @@ using Microsoft.Owin.Security.OAuth;
 using WebApp.Models;
 using WebApp.Providers;
 using WebApp.Results;
+using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
@@ -25,9 +26,11 @@ namespace WebApp.Controllers
     {
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
+        private IUnitOfWork db;
 
-        public AccountController()
+        public AccountController(IUnitOfWork db)
         {
+            this.db = db;
         }
 
         public AccountController(ApplicationUserManager userManager,
@@ -328,7 +331,10 @@ namespace WebApp.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, IsConfirmed = false, UserType=db.UserTypes.Get(model.UserType) };
+
+            //If it's a regular user, there's no need for them to be confirmed
+            if (user.UserType.Id == 0) user.IsConfirmed = true;
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 

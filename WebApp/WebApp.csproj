@@ -277,6 +277,14 @@
     <Compile Include="Migrations\201905300731418_BaseModel.Designer.cs">
       <DependentUpon>201905300731418_BaseModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905310803239_MinorTicketChange.cs" />
+    <Compile Include="Migrations\201905310803239_MinorTicketChange.Designer.cs">
+      <DependentUpon>201905310803239_MinorTicketChange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905310936154_ExpandedUserModel.cs" />
+    <Compile Include="Migrations\201905310936154_ExpandedUserModel.Designer.cs">
+      <DependentUpon>201905310936154_ExpandedUserModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -436,6 +444,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905300731418_BaseModel.resx">
       <DependentUpon>201905300731418_BaseModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905310803239_MinorTicketChange.resx">
+      <DependentUpon>201905310803239_MinorTicketChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905310936154_ExpandedUserModel.resx">
+      <DependentUpon>201905310936154_ExpandedUserModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

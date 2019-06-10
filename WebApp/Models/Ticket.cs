@@ -17,7 +17,6 @@ namespace WebApp.Models
         public string Id { get; set; }
         [Required]
         public TicketType TicketType { get; set; }
-        [Required]
         public ApplicationUser User { get; set; }
 
         [Required]
