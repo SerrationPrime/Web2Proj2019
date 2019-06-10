@@ -23,6 +23,40 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 
 /***/ }),
 
+/***/ "./src/app/app-routing.module.ts":
+/*!***************************************!*\
+  !*** ./src/app/app-routing.module.ts ***!
+  \***************************************/
+/*! exports provided: AppRoutingModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppRoutingModule", function() { return AppRoutingModule; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+
+
+
+var AppRoutingModule = /** @class */ (function () {
+    function AppRoutingModule() {
+    }
+    AppRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+            declarations: [],
+            imports: [
+                _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"]
+            ]
+        })
+    ], AppRoutingModule);
+    return AppRoutingModule;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/app.component.css":
 /*!***********************************!*\
   !*** ./src/app/app.component.css ***!
@@ -41,7 +75,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n  <h3>Fakultet tehničkih nauka</h3>\r\n  <div style=\"width:50%; margin: 0 auto\">\r\n    <app-map></app-map>\r\n  </div>\r\n\r\n  <p>\r\n    Aplikacija koristi\r\n    <a href=\"https://angular-maps.com/\">Angular Google Maps (AGM) modul</a>.\r\n    <br /> Instaliranje modula u okviru projekta se radi pomoću:\r\n    <span style=\"color:#2a9fd6\">npm install @agm/core --save</span> komande.\r\n  </p>\r\n\r\n</div>\r\n"
+module.exports = "<div class=\"container\">\r\n  <nav class=\"navbar navbar-fixed-top navbar-dark bg-inverse\">\r\n    <div class=\"container\">\r\n      <a class=\"navbar-brand\">Angular Router</a>\r\n      <ul class=\"nav navbar-nav\" routerLinkActive=\"active\">\r\n        <li class=\"nav-item\"><a class=\"nav-link\" routerLink=\"home\">Home</a></li>\r\n        <li class=\"nav-item\"><a class=\"nav-link\" routerLink=\"about\">About</a></li>\r\n        <li class=\"nav-item\"><a class=\"nav-link\" routerLink=\"courses\">Courses</a></li>\r\n      </ul>\r\n    </div>\r\n  </nav>\r\n  <h3>Fakultet tehničkih nauka</h3>\r\n  <div class=\"jumbotron\" style=\"text-align: center\">\r\n    <app-map style=\"display: inline-block\"></app-map>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -94,6 +128,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ngx_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ngx-bootstrap */ "./node_modules/ngx-bootstrap/esm5/ngx-bootstrap.js");
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
 /* harmony import */ var _map_map_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./map/map.component */ "./src/app/map/map.component.ts");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
+
 
 
 
@@ -113,7 +149,8 @@ var AppModule = /** @class */ (function () {
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
                 _agm_core__WEBPACK_IMPORTED_MODULE_3__["AgmCoreModule"].forRoot({ apiKey: 'AIzaSyDnihJyw_34z5S1KZXp90pfTGAqhFszNJk' }),
-                ngx_bootstrap__WEBPACK_IMPORTED_MODULE_4__["AlertModule"].forRoot()
+                ngx_bootstrap__WEBPACK_IMPORTED_MODULE_4__["AlertModule"].forRoot(),
+                _app_routing_module__WEBPACK_IMPORTED_MODULE_7__["AppRoutingModule"]
             ],
             providers: [],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
