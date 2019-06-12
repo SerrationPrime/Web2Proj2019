@@ -200,6 +200,106 @@
 
             #endregion InitialElements
 
+            #region Stations
+
+            var station1 = new Station
+            {
+                Address = "Bulevar Oslobodjenja, Novi Sad",
+                Id = "1",
+                Name = "Stanica Limanski Park",
+                Latitude = 45.241079,
+                Longitude = 19.842824
+            };
+            var station2 = new Station()
+            {
+                Address = "Skolska, Sremska Kamenica",
+                Id = "2",
+                Name = "Stanica Sremska Kamenica",
+                Latitude = 45.2223462,
+                Longitude = 19.842572
+            };
+            var station3 = new Station()
+            {
+                Address = "Bulevar Oslobodjenja, Novi Sad",
+                Id = "3",
+                Name = "Stanica Futoska",
+                Latitude = 45.252854,
+                Longitude = 19.836652
+            };
+            var station4 = new Station()
+            {
+                Address = "Bulevar Oslobodjenja, Novi Sad",
+                Id = "4",
+                Name = "Stanica Merkator",
+                Latitude = 45.244367,
+                Longitude = 19.841400
+            };
+
+            #endregion Stations
+
+            #region Lines
+
+            var line1 = new Line
+            {
+                LineNumber = "1",
+                Stations = new List<Station>()
+            };
+            var line2 = new Line
+            {
+                LineNumber = "2",
+                Stations = new List<Station>()
+            };
+
+            #endregion Lines
+
+            #region Vehicles
+
+            var vehicle1 = new Vehicle
+            {
+                Id = "1",
+                Latitude = 45.2223462,
+                Longitude = 19.842572,
+                Line = line1
+            };
+            var vehicle2 = new Vehicle
+            {
+                Id = "2",
+                Latitude = 45.2223462,
+                Longitude = 19.842572,
+                Line = line2
+            };
+
+            #endregion Vehicles
+
+            #region Schedule
+
+            var schedule1 = new Schedule
+            {
+                Line = line1,
+                Id = "1",
+                Weekday = DayOfWeek.Monday,
+                Departures = "Stanica Futoska"
+            };
+
+            var schedule2 = new Schedule
+            {
+                Line = line2,
+                Id = "2",
+                Weekday = DayOfWeek.Monday,
+                Departures = "Stanica Limanski Park"
+            };
+
+            #endregion Schedule
+
+            #region ListAdding
+
+            line1.Stations.Add(station3);
+            line1.Stations.Add(station4);
+            line2.Stations.Add(station1);
+            line2.Stations.Add(station2);
+
+            #endregion ListAdding
+
             #region TicketTypeInit
 
             if (!context.TicketTypes.Any(r => r.Type == "Hourly"))
@@ -363,6 +463,72 @@
             }
 
             #endregion PriceInit
+
+            #region StationInit
+
+            if (!(context.Stations.Any(r => r.Name == "Stanica Limanski Park")))
+            {
+                context.Stations.Add(station1);
+            }
+
+            if (!(context.Stations.Any(r => r.Name == "Stanica Sremska Kamenica")))
+            {
+                context.Stations.Add(station2);
+            }
+
+            if (!(context.Stations.Any(r => r.Name == "Stanica Futoska")))
+            {
+                context.Stations.Add(station3);
+            }
+
+            if (!(context.Stations.Any(r => r.Name == "Stanica Merkator")))
+            {
+                context.Stations.Add(station4);
+            }
+
+            #endregion StationInit
+
+            #region LineInit
+
+            if (!(context.Lines.Any(r => r.LineNumber == "1")))
+            {
+                context.Lines.Add(line1);
+            }
+
+            if (!(context.Lines.Any(r => r.LineNumber == "2")))
+            {
+                context.Lines.Add(line2);
+            }
+
+            #endregion LineInit
+
+            #region VehicleInit
+
+            if (!(context.Vehicles.Any(r => r.Id == "1")))
+            {
+                context.Vehicles.Add(vehicle1);
+            }
+
+            if (!(context.Vehicles.Any(r => r.Id == "2")))
+            {
+                context.Vehicles.Add(vehicle2);
+            }
+
+            #endregion LineInit
+
+            #region ScheduleInit
+
+            if (!(context.Schedules.Any(r => r.Id == "1")))
+            {
+                context.Schedules.Add(schedule1);
+            }
+
+            if (!(context.Schedules.Any(r => r.Id == "2")))
+            {
+                context.Schedules.Add(schedule2);
+            }
+
+            #endregion ScheduleInit
 
             var userStore = new UserStore<ApplicationUser>(context);
             var userManager = new UserManager<ApplicationUser>(userStore);

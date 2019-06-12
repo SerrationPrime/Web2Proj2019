@@ -15,12 +15,12 @@ namespace WebApp.Persistence.Repository.ModelRepository
 
         public override Schedule Get(string id)
         {
-            return context.Set<Schedule>().Include(vehicle => vehicle.Line).SingleOrDefault(x => x.Id == id);
+            return context.Set<Schedule>().Include(schedule => schedule.Line).SingleOrDefault(x => x.Id == id);
         }
 
         public override IEnumerable<Schedule> GetAll()
         {
-            return context.Set<Schedule>().Include(vehicle => vehicle.Line);
+            return context.Set<Schedule>().Include(schedule => schedule.Line);
         }
     }
 }
