@@ -15,6 +15,7 @@ using WebApp.Persistence.UnitOfWork;
 namespace WebApp.Controllers
 {
     [Authorize(Roles = "AppUser")]
+    [System.Web.Http.Cors.EnableCors(origins: "localhost:4200", headers: "*", methods: "*")]
     public class TicketsController : ApiController
     {
         private IUnitOfWork db;
@@ -28,7 +29,7 @@ namespace WebApp.Controllers
         // GET: api/Tickets
         public IQueryable<Ticket> GetTickets()
         {
-            return (IQueryable<Ticket>)db.Tickets;
+            return db.Tickets.GetAll().AsQueryable();
         }
 
         // GET: api/Tickets/5

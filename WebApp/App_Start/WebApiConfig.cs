@@ -21,6 +21,8 @@ namespace WebApp
             resolver.RegisterTypes();
             config.DependencyResolver = resolver;
 
+            config.EnableCors();
+
             GlobalHost.DependencyResolver = new SignalRUnityDependencyResolver(container);
 
             // Web API configuration and services
@@ -31,6 +33,8 @@ namespace WebApp
             // Web API routes
             config.MapHttpAttributeRoutes();
 
+            config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            config.Formatters.JsonFormatter.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.None;
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",

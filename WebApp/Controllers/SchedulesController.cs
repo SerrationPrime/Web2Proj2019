@@ -15,6 +15,7 @@ using WebApp.Persistence.UnitOfWork;
 namespace WebApp.Controllers
 {
     [Authorize(Roles = "Admin")]
+    [System.Web.Http.Cors.EnableCors(origins: "localhost:4200", headers: "*", methods: "*")]
     public class SchedulesController : ApiController
     {
         private IUnitOfWork db;
@@ -28,7 +29,7 @@ namespace WebApp.Controllers
         // GET: api/Schedules
         public IQueryable<Schedule> GetSchedules()
         {
-            return (IQueryable<Schedule>)db.Schedules;
+            return db.Schedules.GetAll().AsQueryable();
         }
 
         [AllowAnonymous]

@@ -1,8 +1,9 @@
-namespace WebApp.Migrations
+﻿namespace WebApp.Migrations
 {
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -112,6 +113,64 @@ namespace WebApp.Migrations
             }
 
             #endregion UserTypeInit
+
+            #region StationInit
+
+            Station Stop1 = new Station
+            {
+                Latitude = 45.242268,
+                Longitude = 19.842954,
+                Address = "Bulevar Oslobođenja 133",
+                Name = "Jugodrvo",
+                Id = "1"
+            };
+
+            Station Stop2 = new Station
+            {
+                Latitude = 45.243300,
+                Longitude = 19.842954,
+                Address = "Alpha test",
+                Name = "Alpha",
+                Id = "2"
+            };
+
+            Station Stop3 = new Station
+            {
+                Latitude = 45.243300,
+                Longitude = 19.843100,
+                Address = "Beta test",
+                Name = "Beta",
+                Id = "3"
+            };
+
+            Line BaseLine = new Line
+            {
+                LineNumber = "1A",
+                Stations = new List<Station>()
+            };
+            BaseLine.Stations.Add(Stop1);
+            BaseLine.Stations.Add(Stop2);
+            BaseLine.Stations.Add(Stop3);
+
+            if (!context.Stations.Any(r => r.Id == "1"))
+            {
+                context.Stations.Add(Stop1);
+            }
+            if (!context.Stations.Any(r => r.Id == "2"))
+            {
+                context.Stations.Add(Stop2);
+            }
+            if (!context.Stations.Any(r => r.Id == "3"))
+            {
+                context.Stations.Add(Stop3);
+            }
+
+            if (!context.Lines.Any(r => r.LineNumber == "1A"))
+            {
+                context.Lines.Add(BaseLine);
+            }
+
+            #endregion
 
             var userStore = new UserStore<ApplicationUser>(context);
             var userManager = new UserManager<ApplicationUser>(userStore);

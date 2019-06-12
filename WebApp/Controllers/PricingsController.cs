@@ -15,6 +15,7 @@ using WebApp.Persistence.UnitOfWork;
 namespace WebApp.Controllers
 {
     [Authorize(Roles = "Admin")]
+    [System.Web.Http.Cors.EnableCors(origins: "localhost:4200", headers: "*", methods: "*")]
     public class PricingsController : ApiController
     {
 
@@ -29,7 +30,7 @@ namespace WebApp.Controllers
         // GET: api/Pricings
         public IQueryable<Pricing> GetPriceList()
         {
-            return (IQueryable<Pricing>)db.PriceList;
+            return db.PriceList.GetAll().AsQueryable();
         }
 
         [AllowAnonymous]

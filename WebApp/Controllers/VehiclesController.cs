@@ -15,6 +15,7 @@ using WebApp.Persistence.UnitOfWork;
 namespace WebApp.Controllers
 {
     [Authorize(Roles = "Administrator")]
+    [System.Web.Http.Cors.EnableCors(origins: "localhost:4200", headers: "*", methods: "*")]
     public class VehiclesController : ApiController
     {
         private IUnitOfWork db;
@@ -28,7 +29,7 @@ namespace WebApp.Controllers
         // GET: api/Vehicles
         public IQueryable<Vehicle> GetVehicles()
         {
-            return (IQueryable<Vehicle>)db.Vehicles;
+            return db.Vehicles.GetAll().AsQueryable();
         }
 
         [AllowAnonymous]

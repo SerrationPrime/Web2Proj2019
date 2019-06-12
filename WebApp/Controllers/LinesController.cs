@@ -15,6 +15,7 @@ using WebApp.Persistence.UnitOfWork;
 namespace WebApp.Controllers
 {
     [Authorize(Roles = "Admin")]
+    [System.Web.Http.Cors.EnableCors(origins: "localhost:4200", headers: "*", methods: "*")]
     public class LinesController : ApiController
     {
         private IUnitOfWork db;
@@ -28,7 +29,8 @@ namespace WebApp.Controllers
         // GET: api/Lines
         public IQueryable<Line> GetLines()
         {
-            return (IQueryable<Line>)db.Lines;
+            var test = db.Lines.GetAll().ToList();
+            return db.Lines.GetAll().AsQueryable();
         }
 
         [AllowAnonymous]
