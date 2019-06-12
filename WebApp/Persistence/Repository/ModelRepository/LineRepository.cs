@@ -11,6 +11,12 @@ namespace WebApp.Persistence.Repository.ModelRepository
     {
         public LineRepository(DbContext context) : base(context)
         {
+            
+        }
+
+        public override IEnumerable<Line> GetAll()
+        {
+            return context.Set<Line>().Include(line => line.Stations);
         }
     }
 }

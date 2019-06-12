@@ -16,15 +16,23 @@ namespace WebApp.Persistence.UnitOfWork
         public DemoUnitOfWork(DbContext context)
         {
             _context = context;
+            context.Configuration.LazyLoadingEnabled = false;
         }
-
+        [Dependency]
         public IPricingRepository PriceList { get; set; }
+        [Dependency]
         public ILineRepository Lines { get; set; }
+        [Dependency]
         public IStationRepository Stations { get; set; }
+        [Dependency]
         public ITicketRepository Tickets { get; set; }
+        [Dependency]
         public IScheduleRepository Schedules { get; set; }
+        [Dependency]
         public IVehicleRepository Vehicles { get; set; }
+        [Dependency]
         public ITicketTypeRepository TicketTypes { get; set; }
+        [Dependency]
         public IUserTypeRepository UserTypes { get; set; }
 
         public int Complete()

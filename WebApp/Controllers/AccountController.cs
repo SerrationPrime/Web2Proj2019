@@ -17,11 +17,13 @@ using WebApp.Models;
 using WebApp.Providers;
 using WebApp.Results;
 using WebApp.Persistence.UnitOfWork;
+using System.Web.Http.Cors;
 
 namespace WebApp.Controllers
 {
     [Authorize]
     [RoutePrefix("api/Account")]
+    [EnableCors(origins: "localhost:4200", headers: "*", methods: "*")]
     public class AccountController : ApiController
     {
         private const string LocalLoginProvider = "Local";
