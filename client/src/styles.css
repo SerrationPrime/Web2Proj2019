@@ -1,2 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 /*/@import "~bootstrap/dist/css/bootstrap.css";*/
+
+.list-group {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding-left: 0;
+  margin-bottom: 0;
+  background-color: azure;
+  color: indigo;
+  font-family: 'Times New Roman';
+}

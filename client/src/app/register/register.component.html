@@ -1,42 +1,43 @@
-<div class="jumbotron">
-  <h3>Register</h3>
+<div class="jumbotron" style="background-color:lightsteelblue">
+  <font size="30" color="darkslateblue" face="Arial">
+    <p>Register Account</p>
+  </font>
   <div class="form-group">
-    <input type="text" id="username" class="input-sm" placeholder="Username..." />
+    <input type="text" id="username" class="input-group-text d-inline-flex p-2" style="background-color:azure; color:indigo" align="center" placeholder="Username..." />
   </div>
   <div class="form-group">
-    <input type="password" id="password" class="input-sm" placeholder="Password..." />
+    <input type="password" id="password" class="input-group-text d-inline-flex p-2" style="background-color:azure; color:indigo" align="center" placeholder="Password..." />
   </div>
   <div class="form-group">
-    <input type="password" id="confirmPassword" class="input-sm" placeholder="Confirm Password..." />
+    <input type="password" id="confirmPassword" class="input-group-text d-inline-flex p-2" style="background-color:azure; color:indigo" align="center" placeholder="Confirm Password..." />
   </div>
   <div class="form-group">
-    <input type="text" id="fName" class="input-sm" placeholder="First Name..." />
+    <input type="text" id="fName" class="input-group-text d-inline-flex p-2" style="background-color:azure; color:indigo" align="center" placeholder="First Name..." />
   </div>
   <div class="form-group">
-    <input type="text" id="lName" class="input-sm" placeholder="Last Name..." />
+    <input type="text" id="lName" class="input-group-text d-inline-flex p-2" style="background-color:azure; color:indigo" align="center" placeholder="Last Name..." />
   </div>
   <div class="form-group">
-    <input type="date" id="dateBirth" class="input-sm" />
+    <input type="date" id="dateBirth" class="input-group-text d-inline-flex p-2" style="background-color:azure; color:indigo" align="center" />
   </div>
   <div class="form-group">
-    <input type="text" id="adress" class="input-sm" placeholder="Your home adress..." />
+    <input type="text" id="adress" class="input-group-text d-inline-flex p-2" style="background-color:azure; color:indigo" align="center" placeholder="Your home adress..." />
   </div>
-  <div class="row">
-    <div class="form-group col-sm">
-      <p class="form-control">What's your status</p>
-    </div>
-    <div class="form-group col-sm">
-      <select class="form-control">
+
+    <div class="form-group d-inline-flex align-items-center">
+      <select class="form-control input-group-text align-items-center" style="background-color:azure; color:indigo; margin-left:inherit" align="center">
         <option value="Normal">Normal Customer</option>
         <option value="Student">Student</option>
         <option value="Senior">Senior</option>
       </select>
     </div>
+
+    <div class="form-group">
+      <input type="file" id="image" class="input-group-text d-inline-flex p-2" style="background-color:azure; color:indigo" align="center" />
+      <br />
+      <p style="color:indigo" align="center" >Image does not need to be uploaded right now<br />Please provide your Index(Student) or Pension Check(Senior)</p>
+    </div>
+    <div class="form-group">
+      <input type="submit" id="Register" class="input-group-text d-inline-flex p-2" style="background-color:azure; color:indigo; border-color:indigo; border-bottom-width:medium" value="Register" />
+    </div>
   </div>
-  <div class="form-group">
-    <input type="file" id="image" class="input-sm" />
-  </div>
-  <div class="form-group">
-    <input type="submit" id="Register" class="input-sm" value="Register" />
-  </div>
-</div>

@@ -13,5 +13,12 @@ namespace WebApp.Controllers
             return Redirect("/Help");
         }
 
+        public ActionResult RegisterTab()
+        {
+            ViewBag.Title = "RegisterTab";
+
+            return View();
+        }
+
     }
 }
