@@ -14,8 +14,11 @@ import { RegisterComponent } from './register/register.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AuthHttpService } from './services/auth-http.service';
-
 import { TokenInterceptor } from './interceptors/token.interceptor'
+import { AdminViewLinesComponent } from './admin-view-lines/admin-view-lines.component';
+import { AdminViewStationsComponent } from './admin-view-stations/admin-view-stations.component';
+import { AdminViewSchedulesComponent } from './admin-view-schedules/admin-view-schedules.component';
+import { AdminViewPricesComponent } from './admin-view-prices/admin-view-prices.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,11 @@ import { TokenInterceptor } from './interceptors/token.interceptor'
     PriceComponent,
     LoginComponent,
     HeaderComponent,
-    RegisterComponent
+    RegisterComponent,
+    AdminViewLinesComponent,
+    AdminViewStationsComponent,
+    AdminViewSchedulesComponent,
+    AdminViewPricesComponent
   ],
   imports: [
     BrowserModule,
