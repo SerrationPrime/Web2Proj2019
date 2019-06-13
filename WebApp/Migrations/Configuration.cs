@@ -278,15 +278,15 @@
                 Line = line1,
                 Id = "1",
                 Weekday = DayOfWeek.Monday,
-                Departures = "Stanica Futoska"
+                Departures = "Merkator XX:00 Futoška XX:30"
             };
 
             var schedule2 = new Schedule
             {
                 Line = line2,
                 Id = "2",
-                Weekday = DayOfWeek.Monday,
-                Departures = "Stanica Limanski Park"
+                Weekday = DayOfWeek.Tuesday,
+                Departures = "Limanski park XX:00 Sremska Kamenica XX:30"
             };
 
             #endregion Schedule
@@ -302,22 +302,22 @@
 
             #region TicketTypeInit
 
-            if (!context.TicketTypes.Any(r => r.Type == "Hourly"))
+            if (!context.TicketTypes.Any(r => r.Type == type1.Type))
             {
                 context.TicketTypes.Add(type1);
             }
 
-            if (!context.TicketTypes.Any(r => r.Type == "Daily"))
+            if (!context.TicketTypes.Any(r => r.Type == type2.Type))
             {
                 context.TicketTypes.Add(type2);
             }
 
-            if (!context.TicketTypes.Any(r => r.Type == "Monthly"))
+            if (!context.TicketTypes.Any(r => r.Type == type3.Type))
             {
                 context.TicketTypes.Add(type3);
             }
 
-            if (!context.TicketTypes.Any(r => r.Type == "Yearly"))
+            if (!context.TicketTypes.Any(r => r.Type == type4.Type))
             {
                 context.TicketTypes.Add(type4);
             }
@@ -326,138 +326,81 @@
 
             #region UserTypeInit
 
-            if (!context.UserTypes.Any(r => r.Type == "Normal"))
+            if (!context.UserTypes.Any(r => r.Type == user1.Type))
             {
                 context.UserTypes.Add(user1);
             }
 
-            if (!context.UserTypes.Any(r => r.Type == "Student"))
+            if (!context.UserTypes.Any(r => r.Type == user2.Type))
             {
                 context.UserTypes.Add(user2);
             }
 
-            if (!context.UserTypes.Any(r => r.Type == "Senior"))
+            if (!context.UserTypes.Any(r => r.Type == user3.Type))
             {
                 context.UserTypes.Add(user3);
             }
 
             #endregion UserTypeInit
 
-            #region StationInit
-
-            Station Stop1 = new Station
-            {
-                Latitude = 45.242268,
-                Longitude = 19.842954,
-                Address = "Bulevar Oslobođenja 133",
-                Name = "Jugodrvo",
-                Id = "1"
-            };
-
-            Station Stop2 = new Station
-            {
-                Latitude = 45.243300,
-                Longitude = 19.842954,
-                Address = "Alpha test",
-                Name = "Alpha",
-                Id = "2"
-            };
-
-            Station Stop3 = new Station
-            {
-                Latitude = 45.243300,
-                Longitude = 19.843100,
-                Address = "Beta test",
-                Name = "Beta",
-                Id = "3"
-            };
-
-            Line BaseLine = new Line
-            {
-                LineNumber = "1A",
-                Stations = new List<Station>()
-            };
-            BaseLine.Stations.Add(Stop1);
-            BaseLine.Stations.Add(Stop2);
-            BaseLine.Stations.Add(Stop3);
-
-            if (!context.Stations.Any(r => r.Id == "1"))
-            {
-                context.Stations.Add(Stop1);
-            }
-            if (!context.Stations.Any(r => r.Id == "2"))
-            {
-                context.Stations.Add(Stop2);
-            }
-            if (!context.Stations.Any(r => r.Id == "3"))
-            {
-                context.Stations.Add(Stop3);
-            }
-
-            if (!context.Lines.Any(r => r.LineNumber == "1A"))
-            {
-                context.Lines.Add(BaseLine);
-            }
-
-            #endregion
             #region PriceInit
 
-            if (!(context.PriceList.Any(r => r.TicketType.Type == "Hourly") && context.PriceList.Any(r => r.UserType.Type == "Normal")))
+            if (!(context.PriceList.Any(r => r.TicketType.Type == price1.TicketType.Type && r.UserType.Type == price1.UserType.Type)))
             {
                 context.PriceList.Add(price1);
             }
 
-            if (!(context.PriceList.Any(r => r.TicketType.Type == "Hourly") && context.PriceList.Any(r => r.UserType.Type == "Student")))
+            if (!(context.PriceList.Any(r => r.TicketType.Type == price2.TicketType.Type && r.UserType.Type == price2.UserType.Type)))
             {
                 context.PriceList.Add(price2);
             }
 
-            if (!(context.PriceList.Any(r => r.TicketType.Type == "Hourly") && context.PriceList.Any(r => r.UserType.Type == "Senior")))
+            if (!(context.PriceList.Any(r => r.TicketType.Type == price3.TicketType.Type && r.UserType.Type == price3.UserType.Type)))
             {
                 context.PriceList.Add(price3);
             }
 
-            if (!(context.PriceList.Any(r => r.TicketType.Type == "Daily") && context.PriceList.Any(r => r.UserType.Type == "Normal")))
+            if (!(context.PriceList.Any(r => r.TicketType.Type == price4.TicketType.Type && r.UserType.Type == price4.UserType.Type)))
             {
                 context.PriceList.Add(price4);
             }
 
-            if (!(context.PriceList.Any(r => r.TicketType.Type == "Daily") && context.PriceList.Any(r => r.UserType.Type == "Student")))
+            if (!(context.PriceList.Any(r => r.TicketType.Type == price5.TicketType.Type && r.UserType.Type == price5.UserType.Type)))
             {
                 context.PriceList.Add(price5);
             }
 
-            if (!(context.PriceList.Any(r => r.TicketType.Type == "Daily") && context.PriceList.Any(r => r.UserType.Type == "Senior")))
+            if (!(context.PriceList.Any(r => r.TicketType.Type == price6.TicketType.Type && r.UserType.Type == price6.UserType.Type)))
             {
                 context.PriceList.Add(price6);
             }
 
-            if (!(context.PriceList.Any(r => r.TicketType.Type == "Monthly") && context.PriceList.Any(r => r.UserType.Type == "Normal")))
+            if (!(context.PriceList.Any(r => r.TicketType.Type == price7.TicketType.Type && r.UserType.Type == price7.UserType.Type)))
             {
                 context.PriceList.Add(price7);
             }
 
-            if (!(context.PriceList.Any(r => r.TicketType.Type == "Monthly") && context.PriceList.Any(r => r.UserType.Type == "Student")))
+            if (!(context.PriceList.Any(r => r.TicketType.Type == price8.TicketType.Type && r.UserType.Type == price8.UserType.Type)))
             {
                 context.PriceList.Add(price8);
             }
 
-            if (!(context.PriceList.Any(r => r.TicketType.Type == "Monthly") && context.PriceList.Any(r => r.UserType.Type == "Senior")))
+            if (!(context.PriceList.Any(r => r.TicketType.Type == price9.TicketType.Type && r.UserType.Type == price9.UserType.Type)))
             {
                 context.PriceList.Add(price9);
             }
 
-            if (!(context.PriceList.Any(r => r.TicketType.Type == "Yearly") && context.PriceList.Any(r => r.UserType.Type == "Normal")))
+            if (!(context.PriceList.Any(r => r.TicketType.Type == price10.TicketType.Type && r.UserType.Type == price10.UserType.Type)))
             {
                 context.PriceList.Add(price10);
             }
 
-            if (!(context.PriceList.Any(r => r.TicketType.Type == "Yearly") && context.PriceList.Any(r => r.UserType.Type == "Student")))
+            if (!(context.PriceList.Any(r => r.TicketType.Type == price11.TicketType.Type && r.UserType.Type == price11.UserType.Type)))
             {
                 context.PriceList.Add(price11);
             }
 
-            if (!(context.PriceList.Any(r => r.TicketType.Type == "Yearly") && context.PriceList.Any(r => r.UserType.Type == "Senior")))
+            if (!(context.PriceList.Any(r => r.TicketType.Type == price12.TicketType.Type && r.UserType.Type == price12.UserType.Type)))
             {
                 context.PriceList.Add(price12);
             }
@@ -466,22 +409,22 @@
 
             #region StationInit
 
-            if (!(context.Stations.Any(r => r.Name == "Stanica Limanski Park")))
+            if (!(context.Stations.Any(r => r.Name == station1.Name)))
             {
                 context.Stations.Add(station1);
             }
 
-            if (!(context.Stations.Any(r => r.Name == "Stanica Sremska Kamenica")))
+            if (!(context.Stations.Any(r => r.Name == station2.Name)))
             {
                 context.Stations.Add(station2);
             }
 
-            if (!(context.Stations.Any(r => r.Name == "Stanica Futoska")))
+            if (!(context.Stations.Any(r => r.Name == station3.Name)))
             {
                 context.Stations.Add(station3);
             }
 
-            if (!(context.Stations.Any(r => r.Name == "Stanica Merkator")))
+            if (!(context.Stations.Any(r => r.Name == station4.Name)))
             {
                 context.Stations.Add(station4);
             }
@@ -490,12 +433,12 @@
 
             #region LineInit
 
-            if (!(context.Lines.Any(r => r.LineNumber == "1")))
+            if (!(context.Lines.Any(r => r.LineNumber == line1.LineNumber)))
             {
                 context.Lines.Add(line1);
             }
 
-            if (!(context.Lines.Any(r => r.LineNumber == "2")))
+            if (!(context.Lines.Any(r => r.LineNumber == line2.LineNumber)))
             {
                 context.Lines.Add(line2);
             }
@@ -504,12 +447,12 @@
 
             #region VehicleInit
 
-            if (!(context.Vehicles.Any(r => r.Id == "1")))
+            if (!(context.Vehicles.Any(r => r.Id == vehicle1.Id)))
             {
                 context.Vehicles.Add(vehicle1);
             }
 
-            if (!(context.Vehicles.Any(r => r.Id == "2")))
+            if (!(context.Vehicles.Any(r => r.Id == vehicle2.Id)))
             {
                 context.Vehicles.Add(vehicle2);
             }

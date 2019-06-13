@@ -23,10 +23,5 @@ namespace WebApp.Persistence.Repository.ModelRepository
         {
             return context.Set<Line>().Include(s => s.Stations).SingleOrDefault(x => x.LineNumber == id);
         }
-
-        public override IEnumerable<Line> GetAll()
-        {
-            return context.Set<Line>().Include(line => line.Stations);
-        }
     }
 }
