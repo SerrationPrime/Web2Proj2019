@@ -11,7 +11,11 @@ import { PriceComponent } from './price/price.component';
 import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
 import { RegisterComponent } from './register/register.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AuthHttpService } from './services/auth-http.service';
+
+import { TokenInterceptor } from './interceptors/token.interceptor'
 
 @NgModule({
   declarations: [
@@ -28,9 +32,12 @@ import { HttpClientModule } from '@angular/common/http';
     AgmCoreModule.forRoot({ apiKey: 'AIzaSyDnihJyw_34z5S1KZXp90pfTGAqhFszNJk' }),
     AlertModule.forRoot(),
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+              AuthHttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
