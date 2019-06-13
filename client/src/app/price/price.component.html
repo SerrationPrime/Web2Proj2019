@@ -4,25 +4,25 @@
   </font>
   <div class="row">
     <div class="form-group col-lg-3">
-      <select class="form-control input-group-text" style="background-color:azure; color:indigo">
-        <option value="Hourly">Hourly Ticket</option>
-        <option value="Daily">Daily Ticket</option>
-        <option value="Monthly">Monthly Ticket</option>
-        <option value="Yearly">Yearly Ticket</option>
+      <select name="tickets" [(ngModel)]="tickets" id="ticketSelect" class="form-control input-group-text" style="background-color:azure; color:indigo" (change)="priceSelection()">
+        <option [ngValue]="1">Hourly Ticket</option>
+        <option [ngValue]="2">Daily Ticket</option>
+        <option [ngValue]="3">Monthly Ticket</option>
+        <option [ngValue]="4">Yearly Ticket</option>
       </select>
     </div>
     <div class="form-group col-lg-3">
-      <select class="form-control input-group-text" style="background-color:azure; color:indigo">
-        <option value="Normal">Normal Ticket</option>
-        <option value="Student">Student Ticket</option>
-        <option value="Senior">Senior Ticket</option>
+      <select [(ngModel)]="users" id="userSelect" class="form-control input-group-text" style="background-color:azure; color:indigo" (change)="priceSelection()">
+        <option [ngValue]="1" >Normal Ticket</option>
+        <option [ngValue]="2" >Student Ticket</option>
+        <option [ngValue]="3" >Senior Ticket</option>
       </select>
     </div>
     <div class="form-group col-lg-3">
-      <input class=" input-group-text" style="background-color:azure; color:indigo; border-color:indigo; border-bottom-width:medium" type="button" value="Buy Ticket" />
+      <input id="price" class=" input-group-text" style="background-color:azure; color:indigo; border-color:indigo; border-bottom-width:medium" type="button" value="Buy Ticket" />
     </div>
   </div>
-  <div class="form-group col-lg-3" style="color:darkblue">
-    <p>TICKET PRICE LABEL TEMP</p>
+  <div class="form-group col-lg-3" style="color:darkblue; font-size: medium">
+    <p>Ticket Price: {{currentPrice}} ({{currentType}})</p>
   </div>
 </div>
