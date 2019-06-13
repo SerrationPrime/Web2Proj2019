@@ -1,13 +1,11 @@
 <div class="jumbotron" style="background-color:lightsteelblue">
   <font size="30" color="darkslateblue" face="Arial">
-    <p>Novosadski Povrsinski Metro</p>
+    <p>Sky-Metro of Novi Sad</p>
   </font>
-    <div class="col-lg-6" style="font-family: 'Times New Roman'">
-      <div class="list-group" id="list-tab" role="tablist">
-        <a class="list-group-item list-group-item-action" style="background-color:azure; color:indigo;" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Prevoz 1</a>
-        <a class="list-group-item list-group-item-action" style="background-color:azure; color:indigo;" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Prevoz 2</a>
-        <a class="list-group-item list-group-item-action" style="background-color:azure; color:indigo;" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Prevoz 3</a>
-        <a class="list-group-item list-group-item-action" style="background-color:azure; color:indigo;" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Prevoz 4</a>
-      </div>
+  <div class="col-lg-6" style="font-family: 'Times New Roman'">
+    <div class="list-group" id="list-tab" role="tablist" name="scheduleArray">
+      <p class="list-group-item list-group-item-action" style="background-color:azure; color:indigo;" id="list-home-list" data-toggle="list" href="#list-home" role="tab"
+         *ngFor="let schedule of schedules">Line:{{schedule.LineNumber}}, Departures:{{schedule.Departure}}</p>
     </div>
+  </div>
   </div>

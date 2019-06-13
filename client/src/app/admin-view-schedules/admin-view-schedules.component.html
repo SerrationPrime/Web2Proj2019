@@ -1,0 +1,39 @@
+<div class="jumbotron" style="background-color:lightsteelblue">
+  <font size="30" color="darkslateblue" face="Arial">
+    <p>Change Schedule</p>
+  </font>
+  <div class="row">
+      <div class="form-group col-lg-3" style="font-family: 'Times New Roman'">
+        <select id="scheduleSelect" class="form-control input-group-text" style="background-color:azure; color:indigo">
+          <!--(change)="priceSelection()" name="tickets" [(ngModel)]="tickets"-->>
+          <option> <!--[ngValue]="1"-->Radosled 1</option>
+          <option> <!--[ngValue]="2"-->Radosled 4</option>
+          <option> <!--[ngValue]="3"-->Radosled 3</option>
+          <option> <!--[ngValue]="4"-->Radosled 4</option>
+        </select>
+      </div>
+      <div class="form-group col-lg-2">
+      </div>
+      <div class="form-group col-lg-3">
+        <input id="schedule" class=" input-group-text" style="background-color:azure; color:indigo; border-color:indigo; border-bottom-width:medium" type="button" value="Change Schedule" />
+      </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-lg-3">
+      <input id="ScheduleDeparture" class=" input-group-text" style="background-color:azure; color:indigo; border-color:indigo;" type="text" placeholder="New Departures">
+      <br />
+      <input id="LineNumber" class=" input-group-text" style="background-color:azure; color:indigo; border-color:indigo;" type="text" placeholder="Change Line Number">
+      <br />
+      <select id="daySelect" class="form-control input-group-text" style="background-color:azure; color:indigo">
+        <!--[(ngModel)]="users"--> <!--(change)="priceSelection()"-->>
+        <option> <!--[ngValue]="1"-->Monday</option>
+        <option> <!--[ngValue]="2"-->Tuesday</option>
+        <option> <!--[ngValue]="3"-->Wednesday</option>
+        <option> <!--[ngValue]="1"-->Thursday</option>
+        <option> <!--[ngValue]="2"-->Friday</option>
+        <option> <!--[ngValue]="3"-->Saturday</option>
+        <option> <!--[ngValue]="3"-->Sunday</option>
+      </select>
+    </div>
+    </div>
+  </div>

@@ -1,0 +1,43 @@
+<div class="jumbotron" style="background-color:lightsteelblue">
+  <font size="30" color="darkslateblue" face="Arial">
+    <p>Change Lines</p>
+  </font>
+  <div class="row">
+    <div class="form-group col-lg-3" style="font-family: 'Times New Roman'">
+      <select id="lineSelect" class="form-control input-group-text" style="background-color:azure; color:indigo">
+        <!--(change)="priceSelection()" name="tickets" [(ngModel)]="tickets"-->>
+        <option> <!--[ngValue]="1"-->Linija 1</option>
+        <option> <!--[ngValue]="2"-->Linija 4</option>
+        <option> <!--[ngValue]="3"-->Linija 3</option>
+        <option> <!--[ngValue]="4"-->Linija 4</option>
+      </select>
+    </div>
+    <div class="form-group col-lg-3">
+    </div>
+    <div class="form-group col-lg-3" style="align-items:flex-end">
+      <input id="line" class=" input-group-text" style="background-color:azure; color:indigo; border-color:indigo; border-bottom-width:medium" type="button" value="Change Line" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-lg-3">
+      <input id="LineNumber" class=" input-group-text" style="background-color:azure; color:indigo; border-color:indigo;" type="text" placeholder="Change Line Number">
+      <br />
+      <select id="StationSelect" class="form-control input-group-text" style="background-color:azure; color:indigo">
+        <!--(change)="priceSelection()" name="tickets" [(ngModel)]="tickets"-->>
+        <option> <!--[ngValue]="1"-->Stanica 1</option>
+        <option> <!--[ngValue]="2"-->Stanica 4</option>
+        <option> <!--[ngValue]="3"-->Stanica 3</option>
+        <option> <!--[ngValue]="4"-->Stanica 4</option>
+      </select>
+    </div>
+    <div class="form-group col-lg-3">
+      <input id="StationName" class=" input-group-text" style="background-color:azure; color:indigo; border-color:indigo;" type="text" placeholder="Change Station Name">
+      <br />
+      <input id="StationAdress" class=" input-group-text" style="background-color:azure; color:indigo; border-color:indigo;" type="text" placeholder="Change Station Adress">
+    </div>
+    <div class="form-group col-lg-2">
+      <input id="StationLatitude" class=" input-group-text" style="background-color:azure; color:indigo; border-color:indigo;" type="number" placeholder="Latitude">
+      <br />
+      <input id="StationLongitude" class=" input-group-text" style="background-color:azure; color:indigo; border-color:indigo;" type="number" placeholder="Longitude">
+    </div>
+  </div>

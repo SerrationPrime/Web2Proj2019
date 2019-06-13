@@ -13,6 +13,10 @@ import { HeaderComponent } from './header/header.component';
 import { RegisterComponent } from './register/register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { AdminViewLinesComponent } from './admin-view-lines/admin-view-lines.component';
+import { AdminViewStationsComponent } from './admin-view-stations/admin-view-stations.component';
+import { AdminViewSchedulesComponent } from './admin-view-schedules/admin-view-schedules.component';
+import { AdminViewPricesComponent } from './admin-view-prices/admin-view-prices.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +26,11 @@ import { FormsModule } from '@angular/forms';
     PriceComponent,
     LoginComponent,
     HeaderComponent,
-    RegisterComponent
+    RegisterComponent,
+    AdminViewLinesComponent,
+    AdminViewStationsComponent,
+    AdminViewSchedulesComponent,
+    AdminViewPricesComponent
   ],
   imports: [
     BrowserModule,
