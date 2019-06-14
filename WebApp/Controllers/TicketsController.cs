@@ -11,6 +11,7 @@ using System.Web.Http.Description;
 using WebApp.Models;
 using WebApp.Persistence;
 using WebApp.Persistence.UnitOfWork;
+using Microsoft.AspNet.Identity;
 
 namespace WebApp.Controllers
 {
@@ -34,16 +35,16 @@ namespace WebApp.Controllers
 
         // GET: api/Tickets/5
         // Note: Implement auth check on whether the authorized user owns the ticket
-        [ResponseType(typeof(Ticket))]
+        [ResponseType(typeof(Boolean))]
         public IHttpActionResult GetTicket(string id)
         {
             Ticket ticket = db.Tickets.Get(id);
-            if (ticket == null)
+            if (ticket == null || ticket.ExpirationDate< DateTime.Now)
             {
-                return NotFound();
+                return Ok(false);
             }
 
-            return Ok(ticket);
+            else return Ok(ticket);
         }
 
         [Authorize(Roles = "Admin")]
@@ -83,26 +84,59 @@ namespace WebApp.Controllers
         }
 
         // POST: api/Tickets
+        [AllowAnonymous]
         [ResponseType(typeof(Ticket))]
-        public IHttpActionResult PostTicket(Ticket ticket)
+        public IHttpActionResult PostTicket([FromBody]int type)
         {
+            Ticket ticket = new Ticket();
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
+            ticket.TicketType = db.TicketTypes.Get(type);
+
             //Only registered users may buy non-hourly tickets
-            if (!System.Web.HttpContext.Current.User.Identity.IsAuthenticated) 
+            if (!User.Identity.IsAuthenticated) 
             {
-                if (ticket.TicketType.Id != 0)
+                if (type != 1)
                 {
                     return Unauthorized();
                 }
                 else
                 {
                     ticket.User = null;
+                    ticket.ExpirationDate = DateTime.Now.AddHours(1);
                 }
             }
+            else
+            {
+                //Note: should have added data on how much to add to TicketType
+                ticket.User = User.Identity as ApplicationUser;
+                //if (!ticket.User.IsConfirmed)
+                //{
+                //    return Unauthorized();
+                //}
+                if (type == 1)
+                {
+                    ticket.ExpirationDate = DateTime.Now.AddHours(1);
+                }
+                else if (type == 2)
+                {
+                    ticket.ExpirationDate = DateTime.Now.AddDays(1);
+                }
+                else if (type == 3)
+                {
+                    ticket.ExpirationDate = DateTime.Now.AddMonths(1);
+                }
+                else if (type == 4)
+                {
+                    ticket.ExpirationDate = DateTime.Now.AddYears(1); 
+                }
+            }
+
+            ticket.Id = GenerateTicketId();
 
             db.Tickets.Add(ticket);
 
@@ -154,6 +188,18 @@ namespace WebApp.Controllers
         private bool TicketExists(string id)
         {
             return db.Tickets.Find(e => e.Id == id).ToList().Count > 0;
+        }
+
+        private string GenerateTicketId()
+        {
+            Random rnd = new Random();
+            int id = 0;
+            do
+            {
+                id = rnd.Next(1, 1000000);
+            } while (TicketExists(id.ToString()));
+
+            return id.ToString();
         }
     }
 }

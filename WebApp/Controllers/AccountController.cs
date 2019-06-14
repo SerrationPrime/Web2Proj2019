@@ -333,7 +333,7 @@ namespace WebApp.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, IsConfirmed = false, UserType=db.UserTypes.Get(model.UserType) };
+            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, IsConfirmed = false, UserType=db.UserTypes.Get(model.UserType), ImgLink = model.ConfirmationImageLink, DateOfBirth=Convert.ToDateTime(model.DateOfBirth)  };
 
             //If it's a regular user, there's no need for them to be confirmed
             if (user.UserType.Id == 0) user.IsConfirmed = true;

@@ -20,6 +20,7 @@ namespace WebApp.Models
         public string LastName { get; set; }
         public string ImgLink { get; set; }
 
+        public DateTime DateOfBirth { get; set; }
         public bool IsConfirmed { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)

@@ -12,28 +12,43 @@ import { document } from 'ngx-bootstrap';
 export class PriceComponent implements OnInit {
 
   pricesUri = "api/Pricings";
+  ticketsUri = "api/Tickets";
   public priceArray = null;
   public currentPrice: string;
   public currentType: string;
+  public ticketConfirmation: string = "";
 
   public tickets = 1;
   public users = 1;
   public priceTypes;
   public prices: Array<number>;
+  public jwt;
 
   constructor(private ngZone: NgZone, private http: HttpClient) {
   }
 
   ngOnInit() {
 
-      this.priceTypes = [];
-    
+    this.priceTypes = [];
+    this.jwt = localStorage.jwt;
       this.http.get(this.pricesUri).subscribe(data => {
         this.priceArray = data;
         this.priceSelection();
         
       });
 
+  }
+
+  buyTicket() {
+    let ticketType: number = 1;
+
+    if (this.jwt) {
+      ticketType = this.tickets;
+    }
+
+    this.http.post(this.ticketsUri, ticketType).subscribe((data) => {
+      this.ticketConfirmation = "Successfully bought a " + data['TicketType'].Type + " ticket! Your ticket ID is " + data['Id'] + ".";
+    }), (error) => {console.log(error)};
   }
 
   priceSelection() {

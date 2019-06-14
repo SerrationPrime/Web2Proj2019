@@ -29,7 +29,6 @@ namespace WebApp.Controllers
         // GET: api/Lines
         public IQueryable<Line> GetLines()
         {
-            var test = db.Lines.GetAll().ToList();
             return db.Lines.GetAll().AsQueryable();
         }
 

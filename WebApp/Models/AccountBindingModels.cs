@@ -62,6 +62,11 @@ namespace WebApp.Models
         [Display(Name = "Last name")]
         public string LastName { get; set; }
 
+        [DataType(DataType.DateTime)]
+        [Required]
+        [Display(Name = "Date of birth")]
+        public string DateOfBirth { get; set; }
+
         [DataType(DataType.Text)]
         [Display(Name = "Confirmation image")]
         public string ConfirmationImageLink { get; set; }

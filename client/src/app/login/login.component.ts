@@ -27,6 +27,9 @@ export class LoginComponent implements OnInit {
       userData = this.login.value;
       this.http.logIn(userData, () => this.router.navigate(['/home']));
     }
+    else {
+      
+    }
 
   }
 

@@ -1,15 +1,15 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
     <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav" style="font-family: 'Times New Roman'">
-        <li class="nav-item"><a class="nav-link" routerLink="home">Bus list</a></li>
+      <ul (click)="checkAuth()" class="nav navbar-nav" style="font-family: 'Times New Roman'">
+        <li  class="nav-item"><a class="nav-link" routerLink="home">Schedule</a></li>
         <li class="nav-item"><a class="nav-link" routerLink="map">Station Map</a></li>
         <li class="nav-item"><a class="nav-link" routerLink="price">Buy Ticket</a></li>
         <li class="nav-item"><a class="nav-link" routerLink="login">Login</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="admin-view-lines">Check Lines</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="admin-view-stations">Check Station</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="admin-view-schedules">Check Schedules</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="admin-view-prices">Check Prices</a></li>
+        <li class="nav-item" *ngIf="!IsAdmin"><a class="nav-link" routerLink="admin-view-lines">Check Lines</a></li>
+        <li class="nav-item" *ngIf="!IsAdmin"><a class="nav-link" routerLink="admin-view-stations">Check Station</a></li>
+        <li class="nav-item" *ngIf="!IsAdmin"><a class="nav-link" routerLink="admin-view-schedules">Check Schedules</a></li>
+        <li class="nav-item" *ngIf="!IsAdmin"><a class="nav-link" routerLink="admin-view-prices">Check Prices</a></li>
       </ul>
     </div>
   </div>
