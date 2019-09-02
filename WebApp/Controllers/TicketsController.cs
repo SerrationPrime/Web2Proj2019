@@ -15,8 +15,7 @@ using Microsoft.AspNet.Identity;
 
 namespace WebApp.Controllers
 {
-    [Authorize(Roles = "AppUser")]
-    [System.Web.Http.Cors.EnableCors(origins: "localhost:4200", headers: "*", methods: "*")]
+    [Authorize(Roles = "AppUser, Controller, Admin")]
     public class TicketsController : ApiController
     {
         private IUnitOfWork db;
@@ -35,6 +34,7 @@ namespace WebApp.Controllers
 
         // GET: api/Tickets/5
         // Note: Implement auth check on whether the authorized user owns the ticket
+        [Authorize(Roles = "Controller")]
         [ResponseType(typeof(Boolean))]
         public IHttpActionResult GetTicket(string id)
         {
@@ -44,7 +44,7 @@ namespace WebApp.Controllers
                 return Ok(false);
             }
 
-            else return Ok(ticket);
+            else return Ok(true);
         }
 
         [Authorize(Roles = "Admin")]

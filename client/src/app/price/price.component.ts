@@ -48,7 +48,15 @@ export class PriceComponent implements OnInit {
 
     this.http.post(this.ticketsUri, ticketType).subscribe((data) => {
       this.ticketConfirmation = "Successfully bought a " + data['TicketType'].Type + " ticket! Your ticket ID is " + data['Id'] + ".";
-    }), (error) => {console.log(error)};
+    }), (error) => {
+      console.log(error);
+      if (error.number === 403) {
+        this.ticketConfirmation = "You are not allowed to buy that type of ticket.";
+      }
+      else {
+        this.ticketConfirmation = "Ticket could not be bought. You have not been billed. Try again later."
+      }
+    };
   }
 
   priceSelection() {

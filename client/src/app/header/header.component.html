@@ -2,14 +2,16 @@
   <div class="container">
     <div class="collapse navbar-collapse">
       <ul (click)="checkAuth()" class="nav navbar-nav" style="font-family: 'Times New Roman'">
-        <li  class="nav-item"><a class="nav-link" routerLink="home">Schedule</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="home">Schedule</a></li>
         <li class="nav-item"><a class="nav-link" routerLink="map">Station Map</a></li>
         <li class="nav-item"><a class="nav-link" routerLink="price">Buy Ticket</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="login">Login</a></li>
-        <li class="nav-item" *ngIf="!IsAdmin"><a class="nav-link" routerLink="admin-view-lines">Check Lines</a></li>
-        <li class="nav-item" *ngIf="!IsAdmin"><a class="nav-link" routerLink="admin-view-stations">Check Station</a></li>
-        <li class="nav-item" *ngIf="!IsAdmin"><a class="nav-link" routerLink="admin-view-schedules">Check Schedules</a></li>
-        <li class="nav-item" *ngIf="!IsAdmin"><a class="nav-link" routerLink="admin-view-prices">Check Prices</a></li>
+        <li class="nav-item" *ngIf="isAdmin==true"><a class="nav-link" routerLink="admin-view-lines">Check Lines</a></li>
+        <li class="nav-item" *ngIf="isAdmin==true"><a class="nav-link" routerLink="admin-view-stations">Check Station</a></li>
+        <li class="nav-item" *ngIf="isAdmin==true"><a class="nav-link" routerLink="admin-view-schedules">Check Schedules</a></li>
+        <li class="nav-item" *ngIf="isAdmin==true"><a class="nav-link" routerLink="admin-view-prices">Check Prices</a></li>
+        <li class="nav-item" *ngIf="isController==true"><a class="nav-link" routerLink="ticket-control">Check Tickets</a></li>
+        <li class="nav-item" *ngIf="isLogged==false"><a class="nav-link" routerLink="login">Login</a></li>
+        <li class="nav-item" *ngIf="isLogged==true"><a class="nav-link" (click)="logOut()">Logout</a></li>
       </ul>
     </div>
   </div>

@@ -19,6 +19,7 @@ import { AdminViewLinesComponent } from './admin-view-lines/admin-view-lines.com
 import { AdminViewStationsComponent } from './admin-view-stations/admin-view-stations.component';
 import { AdminViewSchedulesComponent } from './admin-view-schedules/admin-view-schedules.component';
 import { AdminViewPricesComponent } from './admin-view-prices/admin-view-prices.component';
+import { TicketControlComponent } from './ticket-control/ticket-control.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AdminViewPricesComponent } from './admin-view-prices/admin-view-prices.
     AdminViewLinesComponent,
     AdminViewStationsComponent,
     AdminViewSchedulesComponent,
-    AdminViewPricesComponent
+    AdminViewPricesComponent,
+    TicketControlComponent
   ],
   imports: [
     BrowserModule,

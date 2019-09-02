@@ -1,0 +1,12 @@
+<div class="jumbotron" style="background-color:lightsteelblue">
+  <font size="30" color="darkslateblue" face="Arial">
+    <p>Ticket control</p>
+  </font>
+    <div class="form-group">
+      <input class="input-group-text d-inline-flex p-2" type="text" [(ngModel)]="ticketId" placeholder="Ticket ID..." />
+      <input class="input-group-text" (click)="checkTicket()" style="margin-left:auto; margin-right:auto; margin-top:10px; background-color:azure; color:indigo; border-color:indigo; border-bottom-width:medium" type="button" value="Verify" />
+    </div>
+    <p>
+      {{message}}
+    </p>
+</div>

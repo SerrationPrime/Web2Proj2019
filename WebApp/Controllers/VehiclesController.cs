@@ -15,7 +15,6 @@ using WebApp.Persistence.UnitOfWork;
 namespace WebApp.Controllers
 {
     [Authorize(Roles = "Administrator")]
-    [System.Web.Http.Cors.EnableCors(origins: "localhost:4200", headers: "*", methods: "*")]
     public class VehiclesController : ApiController
     {
         private IUnitOfWork db;

@@ -4,26 +4,29 @@
   </font>
   <div class="row">
     <div class="form-group col-lg-3">
-      <select id="ticketSelect" class="form-control input-group-text" style="background-color:azure; color:indigo"> <!--(change)="priceSelection()" name="tickets" [(ngModel)]="tickets"-->>
-        <option> <!--[ngValue]="1"-->Hourly Ticket</option>
-        <option> <!--[ngValue]="2"-->Daily Ticket</option>
-        <option> <!--[ngValue]="3"-->Monthly Ticket</option>
-        <option> <!--[ngValue]="4"-->Yearly Ticket</option>
+      <select name="tickets" [(ngModel)]="tickets" id="ticketSelect" class="form-control input-group-text" style="background-color:azure; color:indigo" (change)="priceSelection()">
+        <option [ngValue]="1">Hourly Ticket</option>
+        <option [ngValue]="2">Daily Ticket</option>
+        <option [ngValue]="3">Monthly Ticket</option>
+        <option [ngValue]="4">Yearly Ticket</option>
       </select>
     </div>
     <div class="form-group col-lg-3">
-      <select id="userSelect" class="form-control input-group-text" style="background-color:azure; color:indigo">
-        <!--[(ngModel)]="users"--> <!--(change)="priceSelection()"-->>
-        <option> <!--[ngValue]="1"-->Normal Ticket</option>
-        <option> <!--[ngValue]="2"-->Student Ticket</option>
-        <option> <!--[ngValue]="3"-->Senior Ticket</option>
+      <select [(ngModel)]="users" id="userSelect" class="form-control input-group-text" style="background-color:azure; color:indigo" (change)="priceSelection()">
+        <option [ngValue]="1">Normal Ticket</option>
+        <option [ngValue]="2">Student Ticket</option>
+        <option [ngValue]="3">Senior Ticket</option>
       </select>
     </div>
-    <div class="form-group col-lg-3">
-      <input id="price" class=" input-group-text" style="background-color:azure; color:indigo; border-color:indigo; border-bottom-width:medium" type="button" value="Change Ticket Price" />
+    <div>
+      Ticket Price: {{currentPrice}} ({{currentType}})
     </div>
-  </div>
-  <div class="form-group col-lg-3" style="color:darkblue; font-size: medium">
-    <input type="text" id="price" class=" input-group-text" style="background-color:azure; color:indigo; border-color:indigo" placeholder="Change Ticket Price" />
+    <div class="form-group col-lg-3">
+      <input type="text" id="price" [(ngModel)]="newPrice" class=" input-group-text" style="background-color:azure; color:indigo; border-color:indigo" placeholder="Change Ticket Price" />
+    </div>
+    <div class="form-group col-lg-3">
+      <input id="price" (click)="changePrice()" class=" input-group-text" style="background-color:azure; color:indigo; border-color:indigo; border-bottom-width:medium" type="button" value="Change Selected Ticket Price" />
+    </div>
+    {{ticketConfirmation}}
   </div>
 </div>

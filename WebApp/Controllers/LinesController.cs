@@ -15,7 +15,6 @@ using WebApp.Persistence.UnitOfWork;
 namespace WebApp.Controllers
 {
     [Authorize(Roles = "Admin")]
-    [System.Web.Http.Cors.EnableCors(origins: "localhost:4200", headers: "*", methods: "*")]
     public class LinesController : ApiController
     {
         private IUnitOfWork db;
@@ -54,14 +53,25 @@ namespace WebApp.Controllers
             {
                 return BadRequest(ModelState);
             }
-
             if (id != line.LineNumber)
             {
-                return BadRequest();
+                try
+                {
+                    var temp=db.Lines.Get(id);
+                    db.Lines.Remove(temp);
+                    db.Lines.Add(line);
+                }
+                catch
+                {
+                    return BadRequest();
+                }
+                
             }
-
-            db.Lines.Update(line);
-
+            else
+            {
+                db.Lines.Update(line);
+            }
+            
             try
             {
                 db.Complete();

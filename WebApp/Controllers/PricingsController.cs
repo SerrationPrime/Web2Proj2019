@@ -15,7 +15,6 @@ using WebApp.Persistence.UnitOfWork;
 namespace WebApp.Controllers
 {
     [Authorize(Roles = "Admin")]
-    [System.Web.Http.Cors.EnableCors(origins: "localhost:4200", headers: "*", methods: "*")]
     public class PricingsController : ApiController
     {
 
@@ -49,17 +48,20 @@ namespace WebApp.Controllers
 
         // PUT: api/Pricings/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutPricing(string id, Pricing pricing)
+        public IHttpActionResult PutPricing(string id, [FromBody]double price)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || price<0)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != pricing.Id)
+            Pricing pricing = db.PriceList.Get(id);
+            if (pricing == null)
             {
-                return BadRequest();
+                return NotFound();
             }
+
+            pricing.Price = price;
 
             db.PriceList.Update(pricing);
 

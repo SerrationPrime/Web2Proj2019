@@ -25,7 +25,11 @@ export class LoginComponent implements OnInit {
     if (this.login.status === 'VALID') {
       var userData = new User;
       userData = this.login.value;
-      this.http.logIn(userData, () => this.router.navigate(['/home']));
+      this.http.logIn(userData, () => {
+        this.router.navigate(['/home']);
+        location.reload();
+      }
+      );
     }
     else {
       

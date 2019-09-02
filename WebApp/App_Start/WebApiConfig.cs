@@ -21,7 +21,8 @@ namespace WebApp
             resolver.RegisterTypes();
             config.DependencyResolver = resolver;
 
-            config.EnableCors();
+            var cors = new System.Web.Http.Cors.EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(cors);
 
             GlobalHost.DependencyResolver = new SignalRUnityDependencyResolver(container);
 

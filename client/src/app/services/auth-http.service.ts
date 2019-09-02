@@ -40,5 +40,21 @@ export class AuthHttpService{
           callback();
           
         } );
+  }
+
+  logOut() {
+    let httpOptions = {
+      headers: {
+        "Content-type": "application/x-www-form-urlencoded"
+      }
     }
+
+    this.http.post<any>(this.base_url + "/api/Account/Logout", httpOptions)
+      .subscribe(() => {
+       //iz nekog razloga, CORS ne voli logout       
+      });
+    localStorage.removeItem('jwt');
+    localStorage.removeItem('role');
+    console.log('Logout was successful.');
+  }
 }

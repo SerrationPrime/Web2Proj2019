@@ -12,7 +12,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class RegisterComponent implements OnInit {
   register = new FormGroup({
-    username: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.required),
     password: new FormControl('', [Validators.required, Validators.minLength(6)]),
     confirmPassword: new FormControl('', [Validators.required, Validators.minLength(6)]),
     firstName: new FormControl('', [Validators.required]),
@@ -31,11 +31,12 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    let model : UserBindingModel;
-
+    let model: UserBindingModel;
+    model = this.register.value;
     if (this.register.valid && (model.password == model.confirmPassword)) {
       this.http.post(this.registerPath, model).subscribe(() => {
         this.router.navigate['/login'];
+        location.reload();
       })
     }
   }
